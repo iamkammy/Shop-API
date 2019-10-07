@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-
-
+const Product = require('../models/product');
+const mongoose = require('mongoose');
 router.get('/', (req,res,next) => {
     res.status(200).json({
         message: 'Handling Get requests to /products',
@@ -10,10 +10,18 @@ router.get('/', (req,res,next) => {
 })
 
 router.post('/', (req,res,next) => {
-    const product = {
-        name: req.body.name,
-        price : req.body.price
-    }
+    
+    const product = new Product({
+        _id : new mongoose.Schema.Types.ObjectId(),
+        name : req.body.name,
+        price: req.body.price
+    });
+    product.save().then(result => {
+        console.log(result);
+    })
+    .catch(err =>{
+        console.log(err);
+    })
     res.status(200).json({
         message: 'Handling Get requests to /products',
         createdProduct: product
@@ -43,3 +51,17 @@ router.post('/', (req,res,next) => {
 
 
 module.exports = router;
+
+
+
+
+
+// const MongoClient = require('mongodb').MongoClient;
+// const uri = "mongodb+srv://<username>:<password>@node-shop-api-j1kc0.mongodb.net/admin?retryWrites=true&w=majority";
+// const client = new MongoClient(uri, { useNewUrlParser: true });
+// client.connect(err => {
+//   const collection = client.db("test").collection("devices");
+//   // perform actions on the collection object
+//   client.close();
+// });
+
