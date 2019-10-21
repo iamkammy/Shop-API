@@ -7,7 +7,7 @@ const app = express();
 const productRoutes = require('./api/routes/products');
 const orderRoutes = require('./api/routes/orders');
 
-mongoose.connect('mongodb+srv://kammy:' + process.env.MONGO_ATLAS_PW +'@node-shop-api-j1kc0.mongodb.net/admin?retryWrites=true&w=majority',{
+mongoose.connect('mongodb+srv://kammy:' + process.env.MONGO_ATLAS_PW +'@node-shop-api-j1kc0.mongodb.net/test?retryWrites=true&w=majority',{
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
