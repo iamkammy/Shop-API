@@ -9,7 +9,8 @@ const orderRoutes = require('./api/routes/orders');
 
 mongoose.connect('mongodb+srv://kammy:' + process.env.MONGO_ATLAS_PW +'@node-shop-api-j1kc0.mongodb.net/test?retryWrites=true&w=majority',{
     useNewUrlParser: true,
-    useUnifiedTopology: true
+    useUnifiedTopology: true,
+   
 });
 
 app.use(morgan('dev'));
