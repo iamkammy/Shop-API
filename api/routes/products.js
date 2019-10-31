@@ -39,6 +39,7 @@ router.get('/', (req,res,next) => {
                     name : doc.name,
                     price : doc.price,
                     _id : doc._id,
+                    productImage: doc.productImage,
                     request : {
                         type : 'GET',
                         url : 'http://localhost:4000/products/' + doc._id
@@ -67,7 +68,7 @@ router.get('/', (req,res,next) => {
 router.get('/:id', (req,res,next) => {
     const id = req.params.id;
    Product.findById(id)
-   .select('name price _id')
+   .select('name price _id productImage')
    .exec()
    .then(doc =>{
        console.log(doc);
@@ -110,6 +111,7 @@ router.post('/', upload.single('productImage'), (req,res,next) => {
                 name : result.name,
                 price : result.price,
                 _id: result._id,
+                productImage : result.productImage,
                 request : {
                     type : 'GET',
                     url : 'http://localhost:4000/products/' + result._id
